@@ -1,0 +1,12 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<main class="page narrow-page">
+  <section class="panel">
+    <h1>Страница не найдена</h1>
+    <p class="muted">Такого адреса в приложении нет.</p>
+    <a href="<%= currentUser ? '/users' : '/login' %>" class="primary-link">Вернуться</a>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

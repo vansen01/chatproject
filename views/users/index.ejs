@@ -1,0 +1,29 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<main class="page">
+  <section class="section-heading">
+    <h1>Пользователи</h1>
+    <p>Выберите собеседника, чтобы открыть личный чат.</p>
+  </section>
+
+  <%- include('../partials/flash') %>
+
+  <% if (users.length) { %>
+    <div class="user-list">
+      <% users.forEach((user) => { %>
+        <a class="user-row" href="/chat/<%= user.id %>">
+          <span class="avatar"><%= user.first_name[0] %><%= user.last_name[0] %></span>
+          <span>
+            <strong><%= user.first_name %> <%= user.last_name %></strong>
+            <small>@<%= user.login %></small>
+          </span>
+        </a>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <div class="empty-state">Пока нет других зарегистрированных пользователей.</div>
+  <% } %>
+</main>
+
+<%- include('../partials/footer') %>

@@ -33,6 +33,14 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.session.user || null;
   res.locals.errors = req.flash('error');
   res.locals.success = req.flash('success');
+  res.locals.formatDateTime = (value) =>
+    new Intl.DateTimeFormat('ru-RU', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    }).format(new Date(value));
   next();
 });
 

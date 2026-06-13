@@ -1,0 +1,38 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<main class="page chat-page">
+  <section class="chat-shell" data-chat data-user-id="<%= currentUser.id %>" data-companion-id="<%= companion.id %>">
+    <div class="chat-header">
+      <a href="/users" class="back-link">Назад</a>
+      <div>
+        <h1><%= companion.first_name %> <%= companion.last_name %></h1>
+        <p>@<%= companion.login %></p>
+      </div>
+    </div>
+
+    <%- include('../partials/flash') %>
+
+    <div class="messages" data-messages>
+      <% if (messages.length) { %>
+        <% messages.forEach((message) => { %>
+          <article class="message <%= message.sender_id === currentUser.id ? 'message-own' : 'message-other' %>">
+            <p><%= message.body %></p>
+            <time datetime="<%= message.created_at.toISOString ? message.created_at.toISOString() : message.created_at %>">
+              <%= formatDateTime(message.created_at) %>
+            </time>
+          </article>
+        <% }) %>
+      <% } else { %>
+        <div class="empty-state" data-empty>История переписки пуста.</div>
+      <% } %>
+    </div>
+
+    <form method="post" action="/chat/<%= companion.id %>/messages" class="message-form" data-message-form>
+      <textarea name="body" rows="2" placeholder="Введите сообщение" required></textarea>
+      <button type="submit" class="primary-button">Отправить</button>
+    </form>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

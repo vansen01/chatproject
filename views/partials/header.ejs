@@ -1,0 +1,15 @@
+    <header class="topbar">
+      <a class="brand" href="<%= currentUser ? '/users' : '/login' %>">Chat MVP</a>
+      <nav class="nav">
+        <% if (currentUser) { %>
+          <span class="user-badge"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
+          <a href="/users">Пользователи</a>
+          <form method="post" action="/logout" class="inline-form">
+            <button type="submit" class="link-button">Выйти</button>
+          </form>
+        <% } else { %>
+          <a href="/login">Вход</a>
+          <a href="/register">Регистрация</a>
+        <% } %>
+      </nav>
+    </header>
