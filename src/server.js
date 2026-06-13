@@ -58,6 +58,7 @@ initDb()
     });
   })
   .catch((error) => {
-    console.error('Не удалось запустить приложение:', error.message);
+    const details = [error.code, error.message].filter(Boolean).join(': ') || String(error);
+    console.error('Не удалось запустить приложение:', details);
     process.exit(1);
   });
